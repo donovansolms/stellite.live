@@ -1,2 +1,3 @@
 # stellite.live
-stellite.live website and services
+
+stellite.live shows real-time information about the cryptocurrency Stellite.
