@@ -225,36 +225,50 @@ func run(config Config) {
 			lastBlock.Height++
 		}
 
-		logger.WithFields(log.Fields{
-			"height":  lastBlock.Height,
-			"routine": "chain",
-		}).Info("Reading blockchain")
-
-		// Fetch information for the given height
-		blockInfo, err = daemon.GetBlockInfo(lastBlock.Height)
-		if err != nil {
+		// Keep reading the chain until we are done
+		for atomic.LoadUint32(&isRunning) == 1 {
 			logger.WithFields(log.Fields{
 				"height":  lastBlock.Height,
-				"err":     err,
 				"routine": "chain",
-			}).Warning("Unable to get block info from daemon")
-			goto skip
-		}
+			}).Info("Reading blockchain")
 
-		lastBlock = models.Block{
-			Height:     blockInfo.Result.BlockHeader.Height,
-			Difficulty: blockInfo.Result.BlockHeader.Difficulty,
-			Reward:     float64(blockInfo.Result.BlockHeader.Reward) / float64(100.00),
-			Timestamp:  time.Unix(blockInfo.Result.BlockHeader.Timestamp, 0).UTC(),
-			TxCount:    blockInfo.Result.BlockHeader.NumTxes,
-		}
-		query = db.Save(&lastBlock)
-		if query.Error != nil {
-			logger.WithFields(log.Fields{
-				"err":     query.Error,
-				"routine": "chain",
-			}).Error("Unable to save block to database")
-			goto skip
+			// Fetch information for the given height
+			blockInfo, err = daemon.GetBlockInfo(lastBlock.Height)
+			if err != nil {
+				logger.WithFields(log.Fields{
+					"height":  lastBlock.Height,
+					"err":     err,
+					"routine": "chain",
+				}).Warning("Unable to get block info from daemon")
+				goto skip
+			}
+			if blockInfo.Error.Message != "" {
+				logger.WithFields(log.Fields{
+					"height":  lastBlock.Height,
+					"err":     blockInfo.Error.Message,
+					"routine": "chain",
+				}).Warning("End of chain")
+				goto skip
+			}
+			// Only save non orphans
+			if blockInfo.Result.BlockHeader.OrphanStatus == false {
+				lastBlock = models.Block{
+					Height:     blockInfo.Result.BlockHeader.Height,
+					Difficulty: blockInfo.Result.BlockHeader.Difficulty,
+					Reward:     float64(blockInfo.Result.BlockHeader.Reward) / float64(100.00),
+					Timestamp:  time.Unix(blockInfo.Result.BlockHeader.Timestamp, 0).UTC(),
+					TxCount:    blockInfo.Result.BlockHeader.NumTxes,
+				}
+				query = db.Save(&lastBlock)
+				if query.Error != nil {
+					logger.WithFields(log.Fields{
+						"err":     query.Error,
+						"routine": "chain",
+					}).Error("Unable to save block to database")
+					goto skip
+				}
+			}
+			lastBlock.Height++
 		}
 
 	skip:

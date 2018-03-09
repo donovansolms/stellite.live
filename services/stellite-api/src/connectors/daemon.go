@@ -17,11 +17,15 @@ type GetBlockRequest struct {
 	} `json:"params"`
 }
 
-// GetBlockResponse
+// GetBlockResponse ...
 type GetBlockResponse struct {
 	ID      string `json:"id"`
 	Jsonrpc string `json:"jsonrpc"`
-	Result  struct {
+	Error   struct {
+		Code    int    `json:"code"`
+		Message string `json:"message"`
+	} `json:"error"`
+	Result struct {
 		Blob        string `json:"blob"`
 		BlockHeader struct {
 			BlockSize    int64  `json:"block_size"`
