@@ -39,11 +39,20 @@
 
 html {
   font-family: @font-family-main;
+  width: 100%;
+  height: 100%;
 }
 
 body {
-  width: 100%;
-  height: 100%;
+  //width: 100px;
+  //height: 100px;
+
+  /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#fb7fb7+0,8088ff+100 */
+  background: #fb7fb7; /* Old browsers */
+  background: -moz-linear-gradient(45deg, #fb7fb7 0%, #8088ff 100%); /* FF3.6-15 */
+  background: -webkit-linear-gradient(45deg, #fb7fb7 0%,#8088ff 100%); /* Chrome10-25,Safari5.1-6 */
+  background: linear-gradient(45deg, #fb7fb7 0%,#8088ff 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#fb7fb7', endColorstr='#8088ff',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */
 }
 
 
@@ -157,7 +166,7 @@ nav.side-menu {
   z-index: 1;
   will-change: transform;
   //background-color: @color-grey-dark;; /* A background-color is required */
-  background-color: white;
+  //background-color: white;
   min-height: 100vh;
 }
 
@@ -213,33 +222,88 @@ div.shown {
     grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
   }
 
-  .info1 {
-     grid-column: span 2;
-     grid-row: span 2;
-  }
-
-  .info2 {
-    grid-column: span 2;
-    grid-row: span 2;
+  .logo {
+    grid-column: span 1;
+    grid-row: span 4;
   }
 
   .div1 {
     grid-column: span 3;
-    grid-row: span 2;
+    grid-row: span 1;
+  }
+  .div2 {
+    grid-column: span 1;
+    grid-row: span 1;
+  }
+  .div3 {
+    grid-column: span 1;
+    grid-row: span 1;
+  }
+  .div4 {
+    grid-column: span 1;
+    grid-row: span 1;
+  }
+  .div5 {
+    grid-column: span 1;
+    grid-row: span 1;
   }
   .div6 {
-    grid-column: span 2;
+    grid-column: span 1;
   }
   .div7 {
-    grid-column: span 3;
+    grid-column: span 1;
+    grid-row: span 1;
+  }
+  .div8 {
+    grid-column: span 1;
+    grid-row: span 1;
   }
   .div9 {
     grid-column: span 6;
+    grid-row: span 2;
   }
 }
 
-.info1, .info2 {
-  padding: 40px;
-  background-color: #333;
-  color: white;
+.logo {
+  text-align: center;
+  img {
+    max-width: 200px;
+  }
+}
+
+div.market-cap {
+  text-align: center;
+  h2 {
+
+  }
+  span {
+    text-transform: uppercase;
+  }
+}
+
+.div1 {
+
+}
+.div2 {
+
+}
+.div3 {
+
+}
+.div4 {
+
+}
+.div5 {
+
+}
+.div6 {
+}
+.div7 {
+
+}
+.div8 {
+
+}
+.div9 {
+  .border-radius(4px);
 }

@@ -3,38 +3,42 @@
     Header
   </div>
   <div class="grid">
-    <section class="info1">
-      info1
+    <section class="logo">
+      <img src="/i/logo-large.png"/>
     </section>
     <div class="div1 shown">
-      1
+      <div class="market-cap">
+        <h2>
+          USD 500 million
+        </h2>
+        <span>
+          Market cap
+        </span>
+      </div>
     </div>
     <div class="div2 shown">
-      2
+      Current Price
     </div>
     <div class="div3 shown">
-      3
+      Date
     </div>
     <div class="div4 shown">
-      4
+      height
     </div>
     <div class="div5 shown">
-      5
+      difficulty
     </div>
     <div class="div6 shown">
-      6
+      last block
     </div>
-    <section class="info2">
-      info2
-    </section>
     <div class="div7 shown">
-      7
+      block reward
     </div>
     <div class="div8 shown">
-      8
+      circulation
     </div>
     <div class="div9 shown">
-      DatePicker Part
+      graph
     </div>
   </div>
 </div>
