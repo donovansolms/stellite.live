@@ -33,6 +33,11 @@
 
 @color-message-background: #efefef;
 
+@color-stellite-purple: #C961F7;
+@color-stellite-purple-dark: #610DA0;
+@color-stellite-purple-dark-lighter: #8A19DF;
+@color-stellite-grey: #59687C;
+
 /* Fonts */
 @font-family-main: 'Roboto', sans-serif;
 
@@ -212,7 +217,7 @@ div.center-holder {
 */
 
 div.shown {
-  background-color: #fafafa;
+  //background-color: #fafafa;
   border: 1px solid #000;
 }
 
@@ -281,6 +286,11 @@ div.market-cap {
   }
 }
 
+div.grid {
+  .border-radius(4px);
+  background-color: #fafafa;
+}
+
 .div1 {
 
 }
@@ -307,3 +317,109 @@ div.market-cap {
 .div9 {
   .border-radius(4px);
 }
+
+// TEMP
+//
+div.holder {
+  max-width: 700px;
+  margin-left: auto;
+  margin-right: auto;
+
+  position: absolute;
+  top:0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+
+  margin: auto;
+  height: 80%;
+
+  div.logo {
+
+  }
+
+  div.block {
+    margin-top: 20px;
+    background-color: #ffffff;
+    .border-radius(4px);
+    padding: 20px;
+    border: 1px solid @color-stellite-purple;
+
+    h1 {
+      //@color-stellite-purple: #C961F7;
+      color: @color-stellite-grey;
+      font-weight: 500;
+    }
+
+    a.button {
+      background-color: @color-stellite-purple-dark-lighter;
+      display: block;
+      color: #ffffff;
+      padding: 10px;
+      .border-radius(4px);
+      font-size: 22px;
+      text-align: left;
+      max-width: 50%;
+      margin-left: auto;
+      margin-right: auto;
+
+      @media @mobile {
+        max-width: 100%;
+      }
+
+      &:hover {
+        background-color: @color-stellite-purple-dark;
+      }
+
+      div.left {
+        padding-left: 20px;
+        display: inline-block;
+        font-size: 30px;
+        padding-right: 5px;
+      }
+      div.right {
+        display: inline-block;
+      }
+
+      div.description {
+        font-size: 14px;
+        .opacity(0.7);
+        padding-left: 1px;
+      }
+    }
+
+    div.how-to {
+      padding-top: 30px;
+      h2 {
+        font-weight: 500;
+        font-size: 18px;
+      }
+      h3 {
+        font-weight: 400;
+      }
+      p {
+        margin-top: 10px;
+        margin-bottom: 10px;
+
+        &.low {
+          border-top: 1px solid @color-stellite-grey;
+          margin-top: 25px;
+          font-size: 14px;
+          .opacity(0.5);
+        }
+      }
+      pre {
+        border: 1px dashed @color-grey-medium;
+        padding: 5px;
+        display: inline-block;
+        &.hash {
+          .opacity(0.5);
+          border: 0;
+        }
+      }
+    }
+  }
+
+}
+
+// END TEMP
