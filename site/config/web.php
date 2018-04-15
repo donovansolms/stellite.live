@@ -45,8 +45,10 @@ $config = [
         'db' => $db,
         'urlManager' => [
             'enablePrettyUrl' => true,
+            'enableStrictParsing' => false,
             'showScriptName' => false,
             'rules' => [
+              'miner/pool/<id:\d+>' => 'miner/pool',
             ],
         ],
         'assetManager' => [
