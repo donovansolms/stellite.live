@@ -7,6 +7,7 @@ import (
 	"strconv"
 )
 
+// TradeOgreTicker implements the TradeOgre ticker response format
 type TradeOgreTicker struct {
 	InitialPrice string `json:"initialprice"`
 	Price        string `json:"price"`
@@ -15,15 +16,18 @@ type TradeOgreTicker struct {
 	Volume       string `json:"volume"`
 }
 
+// TradeOgre retrieves trade information from https://tradeogre.com/
 type TradeOgre struct {
 	Endpoint string
 }
 
+// GetName returns the name of the exchange
 func (exchange *TradeOgre) GetName() string {
 	return "TradeOgre"
 }
 
-// GetTicker ...
+// GetTicker fetches the latest trade information for the exchange and
+// trading pair
 func (exchange *TradeOgre) GetTicker() (Ticker, error) {
 	var ticker Ticker
 

@@ -2,7 +2,7 @@ package models
 
 import "time"
 
-// Price ...
+// Price model
 type Price struct {
 	Exchange     string
 	Volume       float64

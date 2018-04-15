@@ -2,6 +2,7 @@ package models
 
 import "time"
 
+// Block is the blockchain block model
 type Block struct {
 	ID         int64
 	Height     int64
