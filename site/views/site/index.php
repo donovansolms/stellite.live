@@ -152,7 +152,7 @@
   </div>
 </div>
 <div class="pool-list">
-  <h2>Pools</h2>
+  <h2>Pools (<?= count($pools)?>)</h2>
   <?php foreach ($pools as $pool): ?>
     <div class="pool" data-id="{{ .ID }}">
       <h3><?= $pool->name ?></h3>

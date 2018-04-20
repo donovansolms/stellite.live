@@ -3,8 +3,9 @@
     stellite.live stylesheet
 */
 
-@desktop:  ~"only screen and (min-width: 400px)"; /* Mobile view / not a grid anymore */
-@mobile:  ~"only screen and (max-width: 400px)"; /* Mobile view / not a grid anymore */
+@desktop:  ~"only screen and (min-width: 600px)";
+@mobile:  ~"only screen and (min-width: 400px) and (max-width: 600px)";
+@small:  ~"only screen and (max-width: 400px)";
 
 @import "reset.less";
 @import "elements.less";
@@ -18,6 +19,7 @@
 @color-turquoise-light: #00FFFF;
 @color-stellite-purple: #9012F0;
 @color-stellite-purple-dark: #540C87;
+@color-stellite-purple-darkest: #2C004C;
 @color-yellow: #E8D400;
 
 /* Fonts */
@@ -57,12 +59,20 @@ div.info {
   border: 1px solid @color-blue-darker;
   background-color: @color-blue-darker;
   div.logo {
+    @media @mobile {
+      max-width: 30%;
+    }
+    @media @small {
+      max-width: 40%;
+    }
+
     margin-top: 10px;
     max-width: 50%;
     margin-left: auto;
     margin-right: auto;
     img {
       width: 100%;
+
     }
   }
 
@@ -126,13 +136,27 @@ div.pool-list {
 }
 
 div.pool {
+
+  @media @mobile {
+    max-width: 100%;;
+    border-right: 0;
+    border-left: 0;
+    .border-radius(0px);
+  }
+  @media @small {
+    max-width: 100%;
+    border-right: 0;
+    border-left: 0;
+    .border-radius(0px);
+  }
+
+  max-width: 75%;
+  border: 1px solid @color-stellite-purple-darkest;
+  .border-radius(4px);
   margin-bottom: 20px;
   position: relative;
-
-  border: 1px solid @color-stellite-purple-dark;
-  .border-radius(4px);
   padding: 10px;
-  max-width: 75%;
+
   margin-left: auto;
   margin-right: auto;
   background-color: @color-blue-darker;
@@ -145,6 +169,21 @@ div.pool {
   }
 
   div.stats {
+    @media @mobile {
+      position: relative;
+      float:none;
+      margin-left: auto;
+      margin-right: auto;
+      width: 100%;
+    }
+    @media @small {
+      position: relative;
+      float:none;
+      margin-left: auto;
+      margin-right: auto;
+      width: 100%;
+    }
+
     .border-radius(0px 4px 4px 0px);
     right: 0px;
     top: 0px;
