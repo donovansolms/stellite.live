@@ -1,33 +1,188 @@
-<div class="holder">
+<div class="info">
   <div class="logo">
-    <img src="/i/logo-large.png"/>
+    <img src="/i/logo-large.png" />
   </div>
-  <div class="block">
-    <a href="#" class="button">
-      <div class="left">
-        <i class="fa fa-download"></i>
-      </div>
-      <div class="right">
-        Download Blockchain
-        <div class="description">
-          March 13 2018, Block 18823, 1.1 GB
-        </div>
-      </div>
-    </a>
-    <div class="how-to">
-      <h2>How to import the downloaded blockchain on any platform</h2>
-      <p>
-        Extract the downloaded file
-      </p>
-      <pre>> unzip stellite-chain-2018-04-13.18823.zip</pre>
-      <p>
-        Import the chain using <i>stellite-blockchain-import</i>
-      </p>
-      <pre>> stellite-blockchain-import --input-file stellite-chain-2018-04-13.18823.chain --resume 0</pre>
-      <p class="low">
-        <pre class="hash">MD5 c4b466ae0889dfb01c63f74811d0cc17</pre>
-        <pre class="hash">SHA256 cd9ba01b6a22ac300291ff51080fea229a6896a56c71918c22f63c06aed0bdcc</pre>
-      </p>
+  <div class="section spec">
+    <table class="stats">
+      <tr>
+        <td class="title">
+          Ticker
+        </td>
+        <td>
+          XTL
+        </td>
+      </tr>
+      <tr>
+        <td class="title">
+          Supply
+        </td>
+        <td>
+          21 billion
+        </td>
+      </tr>
+      <tr>
+        <td class="title">
+          Circulation
+        </td>
+        <td>
+          <!-- 2.1 billion (~10%) -->
+          <span id="circulation"><?= $stats['circulation']; ?></span>
+        </td>
+      </tr>
+      <tr>
+        <td class="title">
+          Market cap
+        </td>
+        <td>
+          <!-- USD 3 million -->
+          <span id="market_cap"><?= $stats['market_cap']; ?></span>
+        </td>
+      </tr>
+      <tr>
+        <td class="title">
+          Price
+        </td>
+        <td>
+          <!-- 0.00000020 BTC -->
+          <span id="price"><?= $stats['price']; ?> BTC</span>
+        </td>
+      </tr>
+    </table>
+  </div>
+  <div class="section network">
+    <h3>Network</h3>
+    <table class="stats">
+      <tr>
+        <td class="title">
+          Hashrate
+        </td>
+        <td>
+          <!-- 20 MH/s -->
+          <span id="network_hashrate"><?= $stats['hashrate']; ?></span>
+        </td>
+      </tr>
+      <tr>
+        <td class="title">
+          Difficulty
+        </td>
+        <td>
+          <!-- 1 234 912 392 -->
+          <span id="network_difficulty"><?= $stats['difficulty']; ?></span>
+        </td>
+      </tr>
+      <tr>
+        <td class="title">
+          Height
+        </td>
+        <td>
+          <!-- 108 000 -->
+          <span id="network_height"><?= $stats['height']; ?></span>
+        </td>
+      </tr>
+    </table>
+  </div>
+  <div class="section exchanges">
+    <h3>Exchanges</h3>
+    <table class="stats">
+      <tr>
+        <td class="title">
+          Volume today
+        </td>
+        <td>
+          <!-- 30.3264 BTC -->
+          <span id="trading_volume"><?= $stats['volume']; ?> BTC</span>
+        </td>
+      </tr>
+      <tr>
+        <td class="title">
+          TradeOgre
+        </td>
+        <td>
+          <!-- 3.4222 BTC -->
+          <span id="trading_tradeogre_volume"><?= $stats['volume_tradeogre']; ?> BTC</span>
+        </td>
+      </tr>
+      <tr>
+        <td class="title">
+          Crex24
+        </td>
+        <td>
+          <!-- 1.8239 BTC -->
+          <span id="trading_crex_volume"><?= $stats['volume_crex']; ?> BTC</span>
+        </td>
+      </tr>
+    </table>
+  </div>
+  <div class="section records">
+    <h3>Records</h3>
+    <table class="stats">
+      <tr>
+        <td class="title">
+          Peak volume
+        </td>
+        <td>
+          <!-- 30.3264 BTC -->
+          <span id="record_volume"><?= $stats['records']['volume']; ?> BTC</span>
+        </td>
+      </tr>
+      <tr>
+        <td class="title">
+          Highest price
+        </td>
+        <td>
+          <!-- 0.000000023 BTC -->
+          <span id="record_price"><?= $stats['records']['price']; ?> BTC</span>
+        </td>
+      </tr>
+    </table>
+  </div>
+  <div class="section contact">
+    <h3>Contact</h3>
+    <div class="links">
+      <a target="_blank" href="https://www.stellite.cash">Official Website</a>
+      <a target="_blank" href="https://bitcointalk.org/index.php?topic=2813261.0">ANN</a>
+      <a target="_blank" href="https://discord.gg/8PhF342">Discord</a>
+      <a target="_blank" href="https://www.reddit.com/r/stellite/">Reddit</a>
+      <a target="_blank" href="https://github.com/stellitecoin">GitHub</a>
+      <a target="_blank" href="https://www.facebook.com/stellitecash">Facebook</a>
+      <a target="_blank" href="https://twitter.com/stellitecash">Twitter</a>
+      <a target="_blank" href="https://coinmarketcap.com/currencies/stellite">Coin Market Cap</a>
+      <a target="_blank" href="https://coinlib.io/coin/XTL/Stellite">CoinLib</a>
     </div>
   </div>
+</div>
+<div class="pool-list">
+  <h2>Pools</h2>
+  <?php foreach ($pools as $pool): ?>
+    <div class="pool" data-id="{{ .ID }}">
+      <h3><?= $pool->name ?></h3>
+      <a href="<?= $pool->url ?>" target="_blank" class="address"><?= $pool->url ?></a>
+      <div class="stats">
+        <table>
+          <tr>
+            <th>
+              Hash Rate
+            </th>
+            <th>
+              Miners
+            </th>
+            <th>
+              Last Block Found
+            </th>
+          </tr>
+          <tr>
+            <td>
+              <?= $pool->hashrate ?>
+            </td>
+            <td>
+              <?= $pool->miners ?>
+            </td>
+            <td>
+              <?= $pool->last_block ?>
+            </td>
+          </tr>
+        </table>
+      </div>
+    </div>
+  <?php endforeach; ?>
 </div>

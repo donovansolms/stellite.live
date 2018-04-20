@@ -13,7 +13,7 @@ class FontAsset extends AssetBundle
     public $baseUrl = '@web';
     public $css = [
       '/css/font-awesome.min.css',
-      '//fonts.googleapis.com/css?family=Roboto:400,500',
+      '//fonts.googleapis.com/css?family=Poppins:400,600',
     ];
     public $js = [];
     public $depends = [];

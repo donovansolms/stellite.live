@@ -45,7 +45,7 @@ class MinerController extends Controller
       $pool = Pools::find()
         ->where(['id' => $id])
         ->one();
-      $pool->hashrate = strval($pool->hashrate);
+      $pool->hashrate = $this->toHumanHashrate($pool->hashrate);
       return $pool;
     }
 
@@ -80,13 +80,14 @@ class MinerController extends Controller
         ->where(['id' => $pool])
         ->one();
       $stats['pool'] = $pool;
+      $stats['pool']->hashrate = strval($pool->hashrate);
 
       $block_sum = Blocks::find()
         ->select('SUM(reward) as circulation')
         ->one();
       $circulation = $block_sum->circulation;
       $stats['circulation'] = $circulation;
-      
+
       $block = Blocks::find()
         ->orderBy('id DESC')
         ->one();
@@ -152,7 +153,7 @@ class MinerController extends Controller
     }
 
     function toHumanHashrate($hashrate) {
-      
+
       if ($hashrate > 1000000) {
         return number_format($hashrate/1000000, 2, '.', ' ') . ' MH/s';
       } else if ($hashrate > 1000) {

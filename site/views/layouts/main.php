@@ -12,38 +12,20 @@
 ?>
 <?php $this->beginPage() ?>
   <!DOCTYPE html>
-    <html lang="<?= Yii::$app->language ?>">
+  <html lang="<?= Yii::$app->language ?>">
     <head>
       <meta charset="<?= Yii::$app->charset ?>">
       <meta http-equiv="X-UA-Compatible" content="IE=edge">
       <meta name="viewport" content="width=device-width, initial-scale=1">
       <?= Html::csrfMetaTags() ?>
-      <title>Stellite LIVE - Community driven real-time information about the Stellite Cryptocurrency</title>
+      <title>Stellite LIVE - Community driven real-time information about the Stellite cryptocurrency</title>
       <?php $this->head() ?>
     </head>
     <body>
       <?php $this->beginBody() ?>
-      <!--nav class="side-menu" id="menu">
-        <ul>
-          <li>
-            <h2>Menu</h2>
-          </li>
-          <li>
-            <a href="#">Home</a>
-          </li>
-        </ul>
-      </nav>
-      <main id="panel">
-        <header>
-          <a href="#" class="menu-toggle">
-            <i class="fa fa-bars"></i>
-            <img src="/i/logos/goderma-white-red-small.png"/>
-          </a>
-        </header-->
-        <div class="content">
-          <?= $content ?>
-        </div>
-      <!--/main-->
+      <div class="content">
+        <?= $content ?>
+      </div>
       <?php $this->endBody() ?>
     </body>
   </html>
