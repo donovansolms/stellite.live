@@ -87,7 +87,7 @@ class MinerHelper
 
   /**
    * HumanizePoolStats updates some pool stats to be readable by humans
-   * @param [type] $pool [description]
+   * @param models\Pools $pool The pool database model to humanize
    */
   function HumanizePoolStats($pool) {
     $pool->hashrate = $this->HumanizeHashrate($pool->hashrate);
@@ -96,7 +96,13 @@ class MinerHelper
     $block_time = strtotime($pool->last_block);
     $pool->last_block = round(abs($now - $block_time) / 60,0);
     if ($pool->last_block != 1) {
-       $pool->last_block .= ' minutes';
+      if ($pool->last_block > 60) {
+        $pool->last_block = round($pool->last_block / 60,0);
+        if ($pool->last_block != 1) {
+           $pool->last_block .= ' hours';
+        } else $pool->last_block .= ' hour';
+      }
+      else $pool->last_block .= ' minutes';
     } else $pool->last_block .= ' minute';
     $pool->last_block .= ' ago';
     return $pool;

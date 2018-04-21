@@ -29,10 +29,17 @@ class MinerController extends Controller
 
     public function actionPoolList() {
       \Yii::$app->response->format = \yii\web\Response::FORMAT_JSON;
+
+      $showall = \Yii::$app->request->get('all');
+      $limit = 3;
+      if ($showall == 'true') {
+        $limit = -1;
+      }
+
       $pools = Pools::find()
         ->where('display_in_miner = 1 AND rank > 0')
         ->orderBy('rank ASC')
-        ->limit(3)
+        ->limit($limit)
         ->all();
 
       $helper = new MinerHelper();

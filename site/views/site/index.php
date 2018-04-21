@@ -148,12 +148,18 @@
       <a target="_blank" href="https://twitter.com/stellitecash">Twitter</a>
       <a target="_blank" href="https://coinmarketcap.com/currencies/stellite">Coin Market Cap</a>
       <a target="_blank" href="https://coinlib.io/coin/XTL/Stellite">CoinLib</a>
+      <a target="_blank" href="https://getdelta.io">Delta</a>
+      <a target="_blank" href="https://www.blockfolio.com">BlockFolio</a>
     </div>
   </div>
 </div>
 <div class="pool-list">
   <h2>Pools (<?= count($pools)?>)</h2>
-  <?php foreach ($pools as $pool): ?>
+  <div class="divider"></div>
+  <p class="description">
+    Recommened pools
+  </p>
+  <?php foreach ($pools as $i => $pool): ?>
     <div class="pool" data-id="{{ .ID }}">
       <h3><?= $pool->name ?></h3>
       <a href="<?= $pool->url ?>" target="_blank" class="address"><?= $pool->url ?></a>
@@ -184,5 +190,11 @@
         </table>
       </div>
     </div>
+    <?php if ($i == 2): ?>
+      <div class="divider"></div>
+      <p class="description">
+        Other pools
+      </p>
+    <?php endif; ?>
   <?php endforeach; ?>
 </div>
