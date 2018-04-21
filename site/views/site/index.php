@@ -157,7 +157,7 @@
   <h2>Pools (<?= count($pools)?>)</h2>
   <div class="divider"></div>
   <p class="description">
-    Recommened pools
+    Recommended pools
   </p>
   <?php foreach ($pools as $i => $pool): ?>
     <div class="pool" data-id="{{ .ID }}">
