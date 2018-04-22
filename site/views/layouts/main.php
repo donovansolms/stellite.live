@@ -25,6 +25,20 @@
 
       <meta charset="<?= Yii::$app->charset ?>">
       <meta http-equiv="X-UA-Compatible" content="IE=edge"></meta>
+      <meta name="mobile-web-app-capable" content="yes">
+      <link rel="manifest" href="/manifest.json">
+      <link rel="icon" type="image/png" href="/favicon-16x16.png" sizes="16x16">
+      <link rel="icon" type="image/png" href="/favicon-32x32.png" sizes="32x32">
+      <link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96">
+      <link rel="icon" type="image/png" href="/android-icon-144x144.png" sizes="128x128">
+      <link rel="icon" type="image/png" href="/android-icon-144x144.png" sizes="144x144">
+      <link rel="icon" type="image/png" href="/android-icon-192x192.png" sizes="192x192">
+      <link rel="icon" type="image/png" href="/android-icon-192x192.png" sizes="196x196">
+      <link rel="apple-touch-icon" href="/apple-icon-120x120.png">
+      <link rel="apple-touch-icon" sizes="180x180" href="/apple-icon-180x180.png">
+      <link rel="apple-touch-icon" sizes="152x152" href="/apple-icon-152x152.png">
+      <link rel="apple-touch-icon" sizes="167x167" href="/apple-icon-152x152.png">
+      <meta name="theme-color" content="#06071D"></meta>
       <meta name="viewport" content="width=device-width, initial-scale=1"></meta>
       <meta property="og:title" content="Stellite LIVE"></meta>
       <meta property="og:type" content="website"></meta>
