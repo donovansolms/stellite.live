@@ -155,6 +155,9 @@
 </div>
 <div class="pool-list">
   <h2>Pools (<?= count($pools)?>)</h2>
+  <p class="description">
+    Combined hashrate: <?= $poolHashrate ?>
+  </p>
   <!-- <div class="divider"></div>
   <p class="description">
     Recommended pools

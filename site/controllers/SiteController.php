@@ -39,12 +39,15 @@ class SiteController extends Controller
       ->orderBy('rank ASC')
       ->all();
 
+    $poolHashrate = 0.00;
     foreach ($pools as $pool) {
+      $poolHashrate += $pool->hashrate;
       $pool = $helper->HumanizePoolStats($pool);
     }
     return $this->render('index', [
       'stats' => $helper->GetStats(),
       'pools' => $pools,
+      'poolHashrate' => $helper->HumanizeHashrate($poolHashrate),
     ]);
   }
 }
