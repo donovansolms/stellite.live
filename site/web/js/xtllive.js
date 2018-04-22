@@ -8,8 +8,8 @@ $(document).ready(function(){
       $('#market_cap').html(data.market_cap);
       $('#price').html(data.price + ' BTC');
       $('#network_hashrate').html(data.hashrate);
-      $('#network_difficulty').html(data.last_block.difficulty);
-      $('#network_height').html(data.last_block.height);
+      $('#network_difficulty').html(data.difficulty);
+      $('#network_height').html(data.height);
       $('#trading_volume').html(data.volume + ' BTC');
       $('#trading_tradeogre_volume').html(data.volume_tradeogre + ' BTC');
       $('#trading_crex_volume').html(data.volume_crex + ' BTC');

@@ -95,7 +95,7 @@
       </tr>
       <tr>
         <td class="title">
-          TradeOgre
+          <a class="inline-link" href="https://tradeogre.com/exchange/BTC-XTL" target="_blank">TradeOgre</a>
         </td>
         <td>
           <!-- 3.4222 BTC -->
@@ -104,7 +104,7 @@
       </tr>
       <tr>
         <td class="title">
-          Crex24
+          <a class="inline-link" href="https://crex24.com/exchange/XTL-BTC" target="_blank">Crex24</a>
         </td>
         <td>
           <!-- 1.8239 BTC -->
@@ -155,10 +155,10 @@
 </div>
 <div class="pool-list">
   <h2>Pools (<?= count($pools)?>)</h2>
-  <div class="divider"></div>
+  <!-- <div class="divider"></div>
   <p class="description">
     Recommended pools
-  </p>
+  </p> -->
   <?php foreach ($pools as $i => $pool): ?>
     <div class="pool" data-id="{{ .ID }}">
       <h3><?= $pool->name ?></h3>
@@ -191,10 +191,10 @@
       </div>
     </div>
     <?php if ($i == 2): ?>
-      <div class="divider"></div>
+      <!-- <div class="divider"></div>
       <p class="description">
         Other pools
-      </p>
+      </p> -->
     <?php endif; ?>
   <?php endforeach; ?>
 </div>

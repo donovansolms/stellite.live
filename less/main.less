@@ -49,6 +49,15 @@ input::-moz-focus-inner {
   border: 0;
 }
 
+a.inline-link {
+  color: #DDF9FA;
+  .opacity(1.0);
+
+  &:hover {
+    color: @color-turquoise-light;
+  }
+}
+
 div.info {
   @media @desktop {
     max-width: 400px;
@@ -92,6 +101,7 @@ div.info {
     width: 100%;
     td {
       &.title {
+        width: 51%;
         color: #eee;
         text-align: right;
       }

@@ -27,7 +27,7 @@ class MinerHelper
       ->one();
     $stats['last_block'] = $block;
     $stats['difficulty'] = number_format($block->difficulty, 0, '.', ' ');
-    $stats['height'] = number_format($block->height, 0, '.', ' ');;
+    $stats['height'] = number_format($block->height, 0, '.', ' ');
 
     $stats['hashrate'] = $this->HumanizeHashrate($block->difficulty/60);
 

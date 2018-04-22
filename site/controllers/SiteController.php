@@ -28,17 +28,16 @@ class SiteController extends Controller
   */
   public function actionIndex()
   {
+    $helper = new MinerHelper();
     if (\Yii::$app->request->isAjax) {
       \Yii::$app->response->format = \yii\web\Response::FORMAT_JSON;
-      return $this->getStats();
+      return $helper->GetStats();;
     }
 
     $pools = Pools::find()
       ->where('rank > 0 AND is_enabled = 1')
       ->orderBy('rank ASC')
       ->all();
-
-    $helper = new MinerHelper();
 
     foreach ($pools as $pool) {
       $pool = $helper->HumanizePoolStats($pool);
