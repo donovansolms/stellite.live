@@ -114,11 +114,11 @@
     </table>
   </div>
   <div class="section records">
-    <h3>Records</h3>
+    <h3>All Time High</h3>
     <table class="stats">
       <tr>
         <td class="title">
-          Peak volume
+          Volume
         </td>
         <td>
           <!-- 30.3264 BTC -->
@@ -127,7 +127,7 @@
       </tr>
       <tr>
         <td class="title">
-          Highest price
+          Price
         </td>
         <td>
           <!-- 0.000000023 BTC -->

@@ -30,7 +30,8 @@ class MinerLog extends \yii\db\ActiveRecord
     {
         return [
             [['mid', 'pool_id', 'hashrate', 'date_updated'], 'required'],
-            [['pool_id', 'hashrate'], 'integer'],
+            [['pool_id'], 'integer'],
+            [['hashrate'], 'number'],
             [['date_updated'], 'safe'],
             [['mid'], 'string', 'max' => 128],
         ];
@@ -46,6 +47,7 @@ class MinerLog extends \yii\db\ActiveRecord
             'mid' => 'Mid',
             'pool_id' => 'Pool ID',
             'hashrate' => 'Hashrate',
+            'ip' => 'Ip',
             'date_updated' => 'Date Updated',
         ];
     }
