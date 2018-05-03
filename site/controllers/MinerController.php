@@ -37,16 +37,28 @@ class MinerController extends Controller
       \Yii::$app->response->format = \yii\web\Response::FORMAT_JSON;
 
       $showall = \Yii::$app->request->get('all');
-      $limit = 3;
-      if ($showall == 'true') {
-        $limit = -1;
-      }
+      $allowed = \Yii::$app->request->get('allowed');
 
-      $pools = Pools::find()
-        ->where('display_in_miner = 1 AND rank > 0')
-        ->orderBy('rank ASC')
-        ->limit($limit)
-        ->all();
+      if ($showall == 'true') {
+        $pools = Pools::find()
+          ->where('display_in_miner = 1 AND rank > 0')
+          ->orderBy('rank ASC')
+          ->all();
+      }
+      else if ($allowed == 'true') {
+        $pools = Pools::find()
+          ->where('display_in_miner = 1 AND rank > 0 AND hashrate < 1000000')
+          ->orderBy('rank ASC')
+          ->all();
+      }
+      else
+      {
+        $pools = Pools::find()
+          ->where('display_in_miner = 1 AND rank > 0')
+          ->orderBy('rank ASC')
+          ->limit(3)
+          ->all();
+      }
 
       $helper = new MinerHelper();
       foreach ($pools as $pool) {
