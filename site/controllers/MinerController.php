@@ -94,30 +94,35 @@ class MinerController extends Controller
       $hashrate = \Yii::$app->request->get('hr');
       $pool = \Yii::$app->request->get('pool');
 
-      // Save miner log
-      $miner = MinerLog::find()
-        ->where(['mid' => $mid])
-        ->one();
-      if (isset($miner) == false)
+      if (isset($mid))
       {
-        $miner = new MinerLog();
+        // Save miner log
+        $miner = MinerLog::find()
+          ->where(['mid' => $mid])
+          ->one();
+        if (isset($miner) == false)
+        {
+          $miner = new MinerLog();
+        }
+        $miner->mid = $mid;
+        $miner->pool_id = $pool;
+        $miner->hashrate = $hashrate;
+        $miner->ip = \Yii::$app->request->userIP;
+        $miner->date_updated = new Expression('NOW()');
+        // Not checking errors since we don't worry if we can't save the stats
+        $miner->save();
       }
-      $miner->mid = $mid;
-      $miner->pool_id = $pool;
-      $miner->hashrate = $hashrate;
-      $miner->ip = \Yii::$app->request->userIP;
-      $miner->date_updated = new Expression('NOW()');
-      // Not checking errors since we don't worry if we can't save the stats
-      $miner->save();
-
       $helper = new MinerHelper();
       $stats = $helper->GetStats($hashrate);
 
-      // Get pool stats
-      $pool = Pools::find()
-        ->where(['id' => $pool])
-        ->one();
-      $stats['pool'] = $helper->HumanizePoolStats($pool);
+      if (isset($pool))
+      {
+        // Get pool stats
+        $pool = Pools::find()
+          ->where(['id' => $pool])
+          ->one();
+        $stats['pool'] = $helper->HumanizePoolStats($pool);
+      }
 
       return $stats;
     }
