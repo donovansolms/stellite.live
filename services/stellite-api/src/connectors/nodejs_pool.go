@@ -6,18 +6,19 @@ import (
 	"time"
 )
 
+// NodeJSPoolResult result
 type NodeJSPoolResult struct {
 	PoolList       []string `json:"pool_list"`
 	PoolStatistics struct {
-		HashRate           uint32 `json:"hashRate"`
-		Miners             uint32 `json:"miners"`
-		TotalHashes        int64  `json:"totalHashes"`
-		LastBlockFoundTime int64  `json:"lastBlockFoundTime"`
-		LastBlockFound     int    `json:"lastBlockFound"`
-		TotalBlocksFound   int    `json:"totalBlocksFound"`
-		TotalMinersPaid    int    `json:"totalMinersPaid"`
-		TotalPayments      int    `json:"totalPayments"`
-		RoundHashes        int    `json:"roundHashes"`
+		HashRate           float32 `json:"hashRate"`
+		Miners             uint32  `json:"miners"`
+		TotalHashes        int64   `json:"totalHashes"`
+		LastBlockFoundTime int64   `json:"lastBlockFoundTime"`
+		LastBlockFound     int     `json:"lastBlockFound"`
+		TotalBlocksFound   int     `json:"totalBlocksFound"`
+		TotalMinersPaid    int     `json:"totalMinersPaid"`
+		TotalPayments      int     `json:"totalPayments"`
+		RoundHashes        int     `json:"roundHashes"`
 	} `json:"pool_statistics"`
 	LastPayment int `json:"last_payment"`
 }
@@ -44,7 +45,7 @@ func (pool *NodeJSPool) GetStats() (PoolStats, error) {
 		return stats, err
 	}
 
-	stats.Hashrate = result.PoolStatistics.HashRate
+	stats.Hashrate = uint32(result.PoolStatistics.HashRate)
 	stats.Miners = result.PoolStatistics.Miners
 	stats.LastBlockTime = time.Unix(result.PoolStatistics.LastBlockFoundTime, 0)
 	return stats, nil

@@ -52,11 +52,15 @@ func (ex *Exchanges) Run() error {
 		if strings.ToLower(exchangeModel.Name) == "crex24" {
 			exchanges = append(exchanges, &connectors.Crex24{
 				Endpoint: exchangeModel.Endpoint,
+				Base:     "BTC",
+				Alt:      "XTL",
 			})
 		}
 		if strings.ToLower(exchangeModel.Name) == "tradeogre" {
 			exchanges = append(exchanges, &connectors.TradeOgre{
 				Endpoint: exchangeModel.Endpoint,
+				Base:     "BTC",
+				Alt:      "XTL",
 			})
 		}
 	}
@@ -147,6 +151,28 @@ func (ex *Exchanges) Run() error {
 			}
 		}
 
+		// Update the BTC price
+		btcExchange := connectors.Crex24{
+			Endpoint: "https://api.crex24.com/CryptoExchangeService/BotPublic/ReturnTicker?request=[NamePairs=%s_%s]",
+			Base:     "USD",
+			Alt:      "BTC",
+		}
+		ticker, err := btcExchange.GetTicker()
+		if err == nil {
+			btcPrice := models.BtcUsd{
+				Usd:         ticker.Last,
+				DateUpdated: time.Now(),
+			}
+			query = db.Save(&btcPrice)
+			if query.Error != nil {
+				if query.Error != nil {
+					ex.Logger.WithFields(logrus.Fields{
+						"err": query.Error,
+					}).Warning("Unable to update BTC price")
+				}
+			}
+		}
+
 		ex.Logger.WithFields(logrus.Fields{
 			"seconds": ex.SleepSeconds,
 		}).Debug("Sleeping")
@@ -158,8 +184,8 @@ func (ex *Exchanges) Run() error {
 // Stop fetching data
 func (ex *Exchanges) Stop() {
 	if ex.Logger == nil {
-		fmt.Println("LOGGER IS NIL")
+		fmt.Println("LOGGER IS NIL FOR NO REASON - WE LOGGED WHILE RUNNING!!")
 	}
-	ex.Logger.Info("Stopping exchange runner")
 	atomic.StoreUint32(&ex.isRunning, 0)
+	ex.Logger.Info("Stopping exchange runner")
 }

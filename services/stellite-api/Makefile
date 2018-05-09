@@ -30,9 +30,9 @@ run: build
 	XTL_DAEMON_ENDPOINT="127.0.0.1:20189" \
 	EXCHANGE_TRADEOGRE_ENDPOINT="https://tradeogre.com/api/v1/ticker/%s-%s" \
 	EXCHANGE_CREX24_ENDPOINT="https://api.crex24.com/CryptoExchangeService/BotPublic/ReturnTicker?request=[NamePairs=%s_%s]" \
-	POOL_SLEEP_SECONDS=5 \
-	EXCHANGE_SLEEP_SECONDS=5 \
-	BLOCKCHAIN_SLEEP_SECONDS=5 \
+	POOL_SLEEP_SECONDS=60 \
+	EXCHANGE_SLEEP_SECONDS=60 \
+	BLOCKCHAIN_SLEEP_SECONDS=60 \
 	./bin/${APP_NAME}
 
 run_race:

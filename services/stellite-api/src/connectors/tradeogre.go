@@ -19,6 +19,8 @@ type TradeOgreTicker struct {
 // TradeOgre retrieves trade information from https://tradeogre.com/
 type TradeOgre struct {
 	Endpoint string
+	Base     string
+	Alt      string
 }
 
 // GetName returns the name of the exchange
@@ -31,7 +33,10 @@ func (exchange *TradeOgre) GetName() string {
 func (exchange *TradeOgre) GetTicker() (Ticker, error) {
 	var ticker Ticker
 
-	response, err := http.Get(fmt.Sprintf(exchange.Endpoint, "BTC", "XTL"))
+	response, err := http.Get(fmt.Sprintf(
+		exchange.Endpoint,
+		exchange.Base,
+		exchange.Alt))
 	if err != nil {
 		return ticker, err
 	}

@@ -25,6 +25,8 @@ type Crex24Ticker struct {
 // Crex24 retrieves trade information from https://crex24.com/
 type Crex24 struct {
 	Endpoint string
+	Base     string
+	Alt      string
 }
 
 // GetName returns the name of the exchange
@@ -37,7 +39,10 @@ func (exchange *Crex24) GetName() string {
 func (exchange *Crex24) GetTicker() (Ticker, error) {
 	var ticker Ticker
 
-	response, err := http.Get(fmt.Sprintf(exchange.Endpoint, "BTC", "XTL"))
+	response, err := http.Get(fmt.Sprintf(
+		exchange.Endpoint,
+		exchange.Base,
+		exchange.Alt))
 	if err != nil {
 		return ticker, err
 	}

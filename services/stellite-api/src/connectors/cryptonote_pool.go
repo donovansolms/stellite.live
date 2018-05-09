@@ -2,12 +2,12 @@ package connectors
 
 import (
 	"encoding/json"
-	"fmt"
 	"net/http"
 	"strconv"
 	"time"
 )
 
+// CryptonotePoolResult result
 type CryptonotePoolResult struct {
 	Config struct {
 		Ports []struct {
@@ -42,7 +42,7 @@ type CryptonotePoolResult struct {
 		TotalPayments   int      `json:"totalPayments"`
 		TotalMinersPaid int      `json:"totalMinersPaid"`
 		Miners          uint32   `json:"miners"`
-		Hashrate        uint32   `json:"hashrate"`
+		Hashrate        float32  `json:"hashrate"`
 		RoundHashes     int64    `json:"roundHashes"`
 		LastBlockFound  string   `json:"lastBlockFound"`
 	} `json:"pool"`
@@ -81,10 +81,13 @@ func (pool *CryptonotePool) GetStats() (PoolStats, error) {
 		return stats, err
 	}
 
-	stats.Hashrate = result.Pool.Hashrate
+	stats.Hashrate = uint32(result.Pool.Hashrate)
 	stats.Miners = result.Pool.Miners
-	fmt.Println("HERE")
-	result.Pool.LastBlockFound = result.Pool.LastBlockFound[:len(result.Pool.LastBlockFound)-3]
+	if result.Pool.LastBlockFound != "" {
+		result.Pool.LastBlockFound = result.Pool.LastBlockFound[:len(result.Pool.LastBlockFound)-3]
+	} else {
+		result.Pool.LastBlockFound = "0"
+	}
 	timestamp, err := strconv.ParseInt(result.Pool.LastBlockFound, 10, 64)
 	if err != nil {
 		return stats, err
