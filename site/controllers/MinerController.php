@@ -16,6 +16,7 @@ use app\models\Announcements;
 
 class MinerController extends Controller
 {
+    public $enableCsrfValidation = false;
     /**
      * {@inheritdoc}
      */
@@ -27,6 +28,23 @@ class MinerController extends Controller
             ],
         ];
     }
+
+    public function behaviors() {
+      return array_merge(parent::behaviors(), [
+        // For cross-domain AJAX request
+        'corsFilter'  => [
+          'class' => \yii\filters\Cors::className(),
+          'cors'  => [
+            // restrict access to domains:
+            'Origin'                           => ["*"],
+            'Access-Control-Request-Method'    => ['OPTIONS', 'GET', 'POST'],
+            'Access-Control-Allow-Credentials' => true,
+            'Access-Control-Max-Age'           => 3600,
+          ],
+        ],
+      ]);
+    }
+
 
     /**
      * PoolList returns the top 3 pools as ranked in the database.
