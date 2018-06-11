@@ -24,6 +24,7 @@ class MinerHelper
 
     $block = Blocks::find()
       ->orderBy('id DESC')
+      ->limit(1)
       ->one();
     $stats['last_block'] = $block;
     $stats['difficulty'] = number_format($block->difficulty, 0, '.', ' ');
@@ -34,10 +35,12 @@ class MinerHelper
     $tradeogre = Prices::find()
       ->where(['exchange' => 'TradeOgre'])
       ->orderBy('id DESC')
+      ->limit(1)
       ->one();
     $crex = Prices::find()
       ->where(['exchange' => 'Crex24'])
       ->orderBy('id DESC')
+      ->limit(1)
       ->one();
 
     $stats['volume_crex'] = number_format($crex->volume, 8, '.', ' ');
@@ -53,6 +56,7 @@ class MinerHelper
 
     $btc_price = BtcUsd::find()
       ->orderBy('id DESC')
+      ->limit(1)
       ->one();
     $stats['market_cap'] = ($stats['circulation'] * $stats['price']) * $btc_price->usd;
     if ($stats['market_cap'] > 1000000) {
@@ -66,9 +70,11 @@ class MinerHelper
 
     $record_volume = TradingRecords::find()
       ->where(['name' => 'volume'])
+      ->limit(1)
       ->one();
     $record_price = TradingRecords::find()
       ->where(['name' => 'price_high'])
+      ->limit(1)
       ->one();
     $stats['records'] = [
       'price' => $record_price->value,

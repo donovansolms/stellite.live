@@ -41,7 +41,11 @@ class SiteController extends Controller
 
     $poolHashrate = 0.00;
     foreach ($pools as $pool) {
-      $poolHashrate += $pool->hashrate;
+      if ($pool->id != 31)
+      {
+        // Skip the official pool's hashrate since it is the same as cryptopool.space's
+        $poolHashrate += $pool->hashrate;
+      }
       $pool = $helper->HumanizePoolStats($pool);
     }
     return $this->render('index', [
