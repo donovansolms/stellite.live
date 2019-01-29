@@ -6,8 +6,8 @@ import (
 	"sync/atomic"
 	"time"
 
-	"bitbucket.org/iliveit/other-projects/stellite-api/src/connectors"
-	"bitbucket.org/iliveit/other-projects/stellite-api/src/models"
+	"github.com/donovansolms/stellite-api/src/connectors"
+	"github.com/donovansolms/stellite-api/src/models"
 	"github.com/jinzhu/gorm"
 	"github.com/sirupsen/logrus"
 )
@@ -58,6 +58,13 @@ func (ex *Exchanges) Run() error {
 		}
 		if strings.ToLower(exchangeModel.Name) == "tradeogre" {
 			exchanges = append(exchanges, &connectors.TradeOgre{
+				Endpoint: exchangeModel.Endpoint,
+				Base:     "BTC",
+				Alt:      "XTL",
+			})
+		}
+		if strings.ToLower(exchangeModel.Name) == "stex" {
+			exchanges = append(exchanges, &connectors.Stex{
 				Endpoint: exchangeModel.Endpoint,
 				Base:     "BTC",
 				Alt:      "XTL",

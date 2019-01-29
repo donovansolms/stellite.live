@@ -111,6 +111,15 @@
           <span id="trading_crex_volume"><?= $stats['volume_crex']; ?> BTC</span>
         </td>
       </tr>
+      <tr>
+        <td class="title">
+          <a class="inline-link" href="https://app.stex.com/en/basic-trade/pair/BTC/XTL" target="_blank">Stex</a>
+        </td>
+        <td>
+          <!-- 1.8239 BTC -->
+          <span id="trading_stex_volume"><?= $stats['volume_stex']; ?> BTC</span>
+        </td>
+      </tr>
     </table>
   </div>
   <div class="section records">

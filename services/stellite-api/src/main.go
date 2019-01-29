@@ -11,7 +11,7 @@ import (
 	"sync"
 	"syscall"
 
-	"bitbucket.org/iliveit/other-projects/stellite-api/src/runner"
+	"github.com/donovansolms/stellite-api/src/runner"
 	"github.com/kelseyhightower/envconfig"
 	log "github.com/sirupsen/logrus"
 

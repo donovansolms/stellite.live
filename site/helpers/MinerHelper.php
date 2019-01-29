@@ -42,15 +42,25 @@ class MinerHelper
       ->orderBy('id DESC')
       ->limit(1)
       ->one();
+    $stex = Prices::find()
+      ->where(['exchange' => 'Stex'])
+      ->orderBy('id DESC')
+      ->limit(1)
+      ->one();
 
     $stats['volume_crex'] = number_format($crex->volume, 8, '.', ' ');
     $stats['volume_tradeogre'] = number_format($tradeogre->volume, 8, '.', ' ');
-    $stats['volume'] = $tradeogre->volume + $crex->volume;
+    $stats['volume_stex'] = number_format($stex->volume, 8, '.', ' ');
+    $stats['volume'] = $tradeogre->volume + $crex->volume + $stex->volume;
     $stats['volume'] = number_format($stats['volume'], 8, '.', ' ');
     $price = $tradeogre->last;
     if ($crex->last > $price)
     {
       $price = $crex->last;
+    }
+    if ($stex->last > $price)
+    {
+      $price = $stex->last;
     }
     $stats['price'] = $price;
 

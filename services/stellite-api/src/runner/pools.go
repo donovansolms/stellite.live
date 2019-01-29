@@ -5,8 +5,8 @@ import (
 	"sync/atomic"
 	"time"
 
-	"bitbucket.org/iliveit/other-projects/stellite-api/src/connectors"
-	"bitbucket.org/iliveit/other-projects/stellite-api/src/models"
+	"github.com/donovansolms/stellite-api/src/connectors"
+	"github.com/donovansolms/stellite-api/src/models"
 	"github.com/jinzhu/gorm"
 	"github.com/sirupsen/logrus"
 )
