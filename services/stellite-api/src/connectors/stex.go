@@ -58,24 +58,45 @@ func (exchange *Stex) GetTicker() (Ticker, error) {
 
 	for _, stexTicker := range stexTickers {
 		if strings.ToLower(stexTicker.MarketName.(string)) == "xtl_btc" {
-			ticker.Last, err = strconv.ParseFloat(stexTicker.Last.(string), 64)
-			if err != nil {
-				return ticker, nil
+
+			switch v := stexTicker.Last.(type) {
+			case float64:
+				ticker.Last = v
+			case string:
+				ticker.Last, err = strconv.ParseFloat(stexTicker.Last.(string), 64)
+				if err != nil {
+					return ticker, nil
+				}
 			}
 
-			ticker.High, err = strconv.ParseFloat(stexTicker.Ask.(string), 64)
-			if err != nil {
-				return ticker, nil
+			switch v := stexTicker.Ask.(type) {
+			case float64:
+				ticker.High = v
+			case string:
+				ticker.High, err = strconv.ParseFloat(stexTicker.Ask.(string), 64)
+				if err != nil {
+					return ticker, nil
+				}
 			}
 
-			ticker.Low, err = strconv.ParseFloat(stexTicker.Bid.(string), 64)
-			if err != nil {
-				return ticker, nil
+			switch v := stexTicker.Bid.(type) {
+			case float64:
+				ticker.Low = v
+			case string:
+				ticker.Low, err = strconv.ParseFloat(stexTicker.Bid.(string), 64)
+				if err != nil {
+					return ticker, nil
+				}
 			}
 
-			ticker.VolumeBTC, err = strconv.ParseFloat(stexTicker.VolMarket.(string), 64)
-			if err != nil {
-				return ticker, nil
+			switch v := stexTicker.VolMarket.(type) {
+			case float64:
+				ticker.VolumeBTC = v
+			case string:
+				ticker.VolumeBTC, err = strconv.ParseFloat(stexTicker.VolMarket.(string), 64)
+				if err != nil {
+					return ticker, nil
+				}
 			}
 
 			break
